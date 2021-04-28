@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PengalamanKerjaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +26,35 @@ Route::resource('user', ManagementUserController::class);
 
 Route::group(['namespace' => ''], function(){
     Route::resource('home', HomeController::class);
+});
+
+Route::group(['namespace' => ''], function(){
+    Route::resource('dashboard', DashboardController::class);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('statusAdmin');
+
+Route::get("/error", function(){
+    return view('error');
+})->name('error');
+
+Route::group(['namespace' => ''], function(){
+
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('pendidikan', PendidikanController::class);
+    Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
 });
